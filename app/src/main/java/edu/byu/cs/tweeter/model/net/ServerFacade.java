@@ -81,6 +81,8 @@ public class ServerFacade {
             }
         }
 
+
+        //Here, when the server actually exists, we will be accessing the followees of a specific user, not just a generic list
         List<User> allFollowees = getDummyFollowees();
         List<User> responseFollowees = new ArrayList<>(request.getLimit());
 

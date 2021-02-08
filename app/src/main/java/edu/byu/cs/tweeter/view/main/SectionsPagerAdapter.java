@@ -20,28 +20,31 @@ import edu.byu.cs.tweeter.view.main.following.FollowingFragment;
  */
 class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private static final int FOLLOWERS_FRAGMENT_POSITION = 3;
-    private static final int FOLLOWING_FRAGMENT_POSITION = 2;
-
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.feedTabTitle, R.string.storyTabTitle, R.string.followingTabTitle, R.string.followersTabTitle};
     private final Context mContext;
     private final User user;
     private final AuthToken authToken;
+    private int pages = 0;
+    private int followersFragmentPosition = -1;
+    private int followingFragmentPosition = -2;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm, User user, AuthToken authToken) {
+    public SectionsPagerAdapter(Context context, FragmentManager fm, User user, AuthToken authToken, int pages) {
         super(fm);
         mContext = context;
         this.user = user;
         this.authToken = authToken;
+        this.pages = pages;
+        followersFragmentPosition = pages - 1;
+        followingFragmentPosition = pages - 2;
     }
 
     @Override
     public Fragment getItem(int position) {
-        if (position == FOLLOWING_FRAGMENT_POSITION) {
+        if (position == followingFragmentPosition) {
             return FollowingFragment.newInstance(user, authToken);
         }
-        else if (position == FOLLOWERS_FRAGMENT_POSITION) {
+        else if (position == followersFragmentPosition) {
             return FollowersFragment.newInstance(user, authToken);
         } else {
             return PlaceholderFragment.newInstance(position + 1);
@@ -57,6 +60,6 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 4 total pages.
-        return 4;
+        return pages;
     }
 }

@@ -1,5 +1,6 @@
 package edu.byu.cs.tweeter.view.main.followers;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ import edu.byu.cs.tweeter.model.service.request.FollowersRequest;
 import edu.byu.cs.tweeter.model.service.response.FollowersResponse;
 import edu.byu.cs.tweeter.presenter.FollowersPresenter;
 import edu.byu.cs.tweeter.view.asyncTasks.GetFollowersTask;
+import edu.byu.cs.tweeter.view.main.UserActivity;
 import edu.byu.cs.tweeter.view.util.ImageUtils;
 
 /**
@@ -37,6 +39,7 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
     private static final String LOG_TAG = "FollowersFragment";
     private static final String USER_KEY = "UserKey";
     private static final String AUTH_TOKEN_KEY = "AuthTokenKey";
+    public static final String USER = "UserAlias";
 
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
@@ -100,6 +103,7 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
         private final ImageView userImage;
         private final TextView userAlias;
         private final TextView userName;
+        private User rowUser;
 
         /**
          * Creates an instance and sets an OnClickListener for the user's row.
@@ -117,7 +121,8 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(), "You selected '" + userName.getText() + "'.", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "You selected '" + userName.getText() + "'.", Toast.LENGTH_SHORT).show();
+                        userSelected(rowUser);
                     }
                 });
             } else {
@@ -136,7 +141,17 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
             userImage.setImageDrawable(ImageUtils.drawableFromByteArray(user.getImageBytes()));
             userAlias.setText(user.getAlias());
             userName.setText(user.getName());
+            rowUser = user;
         }
+    }
+
+    /**
+     * Starts the user activity, called when a follower is pressed.
+     */
+    private void userSelected(User user){
+        Intent intent = new Intent(this.getActivity(), UserActivity.class);
+        intent.putExtra(USER, user);
+        startActivity(intent);
     }
 
     /**
