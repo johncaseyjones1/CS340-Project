@@ -41,6 +41,7 @@ public class FollowingFragment extends Fragment implements FollowingPresenter.Vi
     private static final String USER_KEY = "UserKey";
     private static final String AUTH_TOKEN_KEY = "AuthTokenKey";
     public static final String USER = "UserAlias";
+    public static final String ACTIVE_USER = "ActiveUserAlias";
 
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
@@ -134,7 +135,7 @@ public class FollowingFragment extends Fragment implements FollowingPresenter.Vi
         }
 
         /**
-         * Binds the user's data to the view.
+         * Binds the rowUser's data to the view.
          *
          * @param user the user.
          */
@@ -150,9 +151,10 @@ public class FollowingFragment extends Fragment implements FollowingPresenter.Vi
     /**
      * Starts the user activity, called when a followee is pressed.
      */
-    private void userSelected(User user){
+    private void userSelected(User rowUser){
         Intent intent = new Intent(this.getActivity(), UserActivity.class);
-        intent.putExtra(USER, user);
+        intent.putExtra(USER, rowUser);
+        intent.putExtra(ACTIVE_USER, user);
         startActivity(intent);
     }
 

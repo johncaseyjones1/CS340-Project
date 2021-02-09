@@ -7,9 +7,11 @@ import java.util.List;
 import edu.byu.cs.tweeter.BuildConfig;
 import edu.byu.cs.tweeter.model.domain.AuthToken;
 import edu.byu.cs.tweeter.model.domain.User;
+import edu.byu.cs.tweeter.model.service.request.FollowRequest;
 import edu.byu.cs.tweeter.model.service.request.FollowersRequest;
 import edu.byu.cs.tweeter.model.service.request.FollowingRequest;
 import edu.byu.cs.tweeter.model.service.request.LoginRequest;
+import edu.byu.cs.tweeter.model.service.response.FollowResponse;
 import edu.byu.cs.tweeter.model.service.response.FollowersResponse;
 import edu.byu.cs.tweeter.model.service.response.FollowingResponse;
 import edu.byu.cs.tweeter.model.service.response.LoginResponse;
@@ -224,5 +226,14 @@ public class ServerFacade {
     List<User> getDummyFollowers() {
         return Arrays.asList(user2, user4, user6, user8, user10,
                 user12, user14, user16, user18, user20);
+    }
+
+    /**
+     * Follows the user and returns whether or not the follow request was successful.
+     * @return success/failure message
+     */
+    public FollowResponse follow(FollowRequest request) {
+        //TODO Implement actual following of users
+        return new FollowResponse("Failed to follow user (not yet implemented)");
     }
 }
