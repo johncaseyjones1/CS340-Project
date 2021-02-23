@@ -63,7 +63,7 @@ public class FollowersServiceTest {
      * @throws IOException if an IO error occurs.
      */
     @Test
-    public void testGetFollowerss_validRequest_correctResponse() throws IOException {
+    public void testGetFollowers_validRequest_correctResponse() throws IOException {
         FollowersResponse response = followersServiceSpy.getFollowers(validRequest);
         Assertions.assertEquals(successResponse, response);
     }
@@ -75,7 +75,7 @@ public class FollowersServiceTest {
      * @throws IOException if an IO error occurs.
      */
     @Test
-    public void testGetFollowerss_validRequest_loadsProfileImages() throws IOException {
+    public void testGetFollowers_validRequest_loadsProfileImages() throws IOException {
         FollowersResponse response = followersServiceSpy.getFollowers(validRequest);
 
         for(User user : response.getFollowers()) {
@@ -90,7 +90,7 @@ public class FollowersServiceTest {
      * @throws IOException if an IO error occurs.
      */
     @Test
-    public void testGetFollowerss_invalidRequest_returnsNoFollowerss() throws IOException {
+    public void testGetFollowers_invalidRequest_returnsNoFollowerss() throws IOException {
         FollowersResponse response = followersServiceSpy.getFollowers(invalidRequest);
         Assertions.assertEquals(failureResponse, response);
     }

@@ -92,6 +92,11 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <FrameLayout
+        android:id="@+id/status_creation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -102,5 +107,7 @@
         android:scaleType="center"
         app:backgroundTint="@color/white"
         app:srcCompat="@drawable/feather" />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

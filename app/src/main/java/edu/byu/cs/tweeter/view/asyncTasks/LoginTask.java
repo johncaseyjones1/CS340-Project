@@ -57,6 +57,7 @@ public class LoginTask extends AsyncTask<LoginRequest, Void, LoginResponse> {
             loginResponse = presenter.login(loginRequests[0]);
 
             if(loginResponse.isSuccess()) {
+                System.out.println("Got login response");
                 loadImage(loginResponse.getUser());
             }
         } catch (IOException ex) {
@@ -91,6 +92,7 @@ public class LoginTask extends AsyncTask<LoginRequest, Void, LoginResponse> {
         if(exception != null) {
             observer.handleException(exception);
         } else if(loginResponse.isSuccess()) {
+            System.out.println("on post execute login successful");
             observer.loginSuccessful(loginResponse);
         } else {
             observer.loginUnsuccessful(loginResponse);

@@ -6,10 +6,10 @@ import java.io.IOException;
 
 import edu.byu.cs.tweeter.model.service.request.FollowRequest;
 import edu.byu.cs.tweeter.model.service.response.FollowResponse;
-import edu.byu.cs.tweeter.presenter.UserPresenter;
+import edu.byu.cs.tweeter.presenter.FollowPresenter;
 
 public class FollowTask extends AsyncTask<FollowRequest, Void, FollowResponse> {
-    private final UserPresenter presenter;
+    private final FollowPresenter presenter;
     private final Observer observer;
     private Exception exception;
 
@@ -27,7 +27,7 @@ public class FollowTask extends AsyncTask<FollowRequest, Void, FollowResponse> {
      *
      * @param observer the observer who wants to be notified when this task completes.
      */
-    public FollowTask(UserPresenter presenter, FollowTask.Observer observer) {
+    public FollowTask(FollowPresenter presenter, FollowTask.Observer observer) {
         if(observer == null) {
             throw new NullPointerException();
         }

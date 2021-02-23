@@ -9,7 +9,7 @@ import edu.byu.cs.tweeter.model.service.FollowService;
 import edu.byu.cs.tweeter.model.service.request.FollowRequest;
 import edu.byu.cs.tweeter.model.service.response.FollowResponse;
 
-public class UserPresenter {
+public class FollowPresenter {
 
     private final View view;
 
@@ -20,7 +20,7 @@ public class UserPresenter {
         // If needed, specify methods here that will be called on the view in response to model updates
     }
 
-    public UserPresenter(View view) { this.view = view;}
+    public FollowPresenter(View view) { this.view = view;}
 
     /**
      * Returns whether or not the user was successfully followed

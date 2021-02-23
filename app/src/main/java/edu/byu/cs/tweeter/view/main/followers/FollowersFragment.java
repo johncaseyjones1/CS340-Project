@@ -40,6 +40,7 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
     private static final String USER_KEY = "UserKey";
     private static final String AUTH_TOKEN_KEY = "AuthTokenKey";
     public static final String USER = "UserAlias";
+    public static final String ACTIVE_USER = "ActiveUserAlias";
 
     private static final int LOADING_DATA_VIEW = 0;
     private static final int ITEM_VIEW = 1;
@@ -47,6 +48,7 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
     private static final int PAGE_SIZE = 10;
 
     private User user;
+    private User activeUser;
     private AuthToken authToken;
     private FollowersPresenter presenter;
 
@@ -78,6 +80,7 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
 
         //noinspection ConstantConditions
         user = (User) getArguments().getSerializable(USER_KEY);
+        activeUser = (User) getArguments().getSerializable(ACTIVE_USER);
         authToken = (AuthToken) getArguments().getSerializable(AUTH_TOKEN_KEY);
 
         presenter = new FollowersPresenter(this);
@@ -148,9 +151,10 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
     /**
      * Starts the user activity, called when a follower is pressed.
      */
-    private void userSelected(User user){
+    private void userSelected(User rowUser){
         Intent intent = new Intent(this.getActivity(), UserActivity.class);
-        intent.putExtra(USER, user);
+        intent.putExtra(USER, rowUser);
+        intent.putExtra(ACTIVE_USER, activeUser);
         startActivity(intent);
     }
 

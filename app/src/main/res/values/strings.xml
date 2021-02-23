@@ -2,9 +2,21 @@
     <string name="app_name">Tweeter</string>
 
     <string name="logoutMenuTitle">Logout</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
 
     <string name="homePageTitle">Home</string>
     <string name="userImageContentDescription">The user\'s image</string>
+
+    <string name="statusPrompt">What do you want to say?</string>
+    <string name="your_status">Your status</string>
+    <string name="post">Post</string>
+
+    <string name="content">Content</string>
 
     <string name="title_activity_main">Tweeter</string>
     <string name="title_activity_user">User</string>
@@ -20,4 +32,5 @@
     <string name="followeeCount">Following: %d</string>
     <string name="followerCount">Followers: %d</string>
     <string name="follow">Follow</string>
+    <string name="unfollow">Unfollow</string>
 </resources>

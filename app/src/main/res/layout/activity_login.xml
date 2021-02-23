@@ -9,15 +9,85 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="An almost completely unimplemented login activity. Replace this with your own and update the code in LoginService."
+        android:text="@string/app_name"
         android:layout_centerHorizontal="true"
+        android:textAlignment="center"
         android:layout_margin="16dp"
-        android:layout_above="@id/LoginButton"/>
+        android:textSize="32sp"
+        android:layout_above="@id/userName"/>
 
-    <Button
-        android:id="@+id/LoginButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Push this Button to Login with a Hard-Coded User"
-        android:layout_centerInParent="true"/>
+        android:id="@+id/userName"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/password"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:layout_width="30pt"
+            android:layout_height="wrap_content"
+            android:text="@string/username"
+            android:layout_margin="16dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/userNameInputLogin"
+            android:layout_margin="16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/buttons"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:layout_width="30pt"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            android:layout_margin="16dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/passwordInputLogin"
+            android:inputType="textPassword"
+            android:layout_margin="16dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttons"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"/>
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register"/>
+
+    </LinearLayout>
+
+
+
 </RelativeLayout>

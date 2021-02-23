@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import edu.byu.cs.tweeter.R;
@@ -34,7 +35,11 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
 
         presenter = new LoginPresenter(this);
 
-        Button loginButton = findViewById(R.id.LoginButton);
+        EditText userNameInput = findViewById(R.id.userNameInputLogin);
+        EditText passwordInput = findViewById(R.id.passwordInputLogin);
+
+        Button loginButton = findViewById(R.id.loginButton);
+        Button registerButton = findViewById(R.id.registerButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             /**
@@ -49,11 +54,26 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
                 loginInToast.show();
 
                 // It doesn't matter what values we put here. We will be logged in with a hard-coded dummy user.
-                LoginRequest loginRequest = new LoginRequest("dummyUserName", "dummyPassword");
+                String userName = userNameInput.getText().toString();
+                String password = passwordInput.getText().toString();
+                LoginRequest loginRequest = new LoginRequest(userName, password);
                 LoginTask loginTask = new LoginTask(presenter, LoginActivity.this);
                 loginTask.execute(loginRequest);
             }
         });
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerClicked();
+            }
+        });
+    }
+
+    private void registerClicked() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+
+        startActivity(intent);
     }
 
     /**

@@ -6,32 +6,32 @@ package edu.byu.cs.tweeter.model.service.request;
  */
 public class FollowersRequest {
 
-    private final String followerAlias;
+    private final String followeeAlias;
     private final int limit;
-    private final String lastFolloweeAlias;
+    private final String lastFollowerAlias;
 
     /**
      * Creates an instance.
      *
-     * @param followerAlias the alias of the user whose followers are to be returned.
+     * @param followeeAlias the alias of the user whose followers are to be returned.
      * @param limit the maximum number of followers to return.
-     * @param lastFolloweeAlias the alias of the last followee that was returned in the previous request (null if
+     * @param lastFollowerAlias the alias of the last follower that was returned in the previous request (null if
      *                     there was no previous request or if no followers were returned in the
      *                     previous request).
      */
-    public FollowersRequest(String followerAlias, int limit, String lastFolloweeAlias) {
-        this.followerAlias = followerAlias;
+    public FollowersRequest(String followeeAlias, int limit, String lastFollowerAlias) {
+        this.followeeAlias = followeeAlias;
         this.limit = limit;
-        this.lastFolloweeAlias = lastFolloweeAlias;
+        this.lastFollowerAlias = lastFollowerAlias;
     }
 
     /**
-     * Returns the follower whose followers are to be returned by this request.
+     * Returns the followee whose followers are to be returned by this request.
      *
-     * @return the follower.
+     * @return the followee.
      */
-    public String getFollowerAlias() {
-        return followerAlias;
+    public String getFolloweeAlias() {
+        return followeeAlias;
     }
 
     /**
@@ -44,12 +44,12 @@ public class FollowersRequest {
     }
 
     /**
-     * Returns the last followee that was returned in the previous request or null if there was no
+     * Returns the last follower that was returned in the previous request or null if there was no
      * previous request or if no followers were returned in the previous request.
      *
-     * @return the last followee.
+     * @return the last follower.
      */
-    public String getLastFolloweeAlias() {
-        return lastFolloweeAlias;
+    public String getLastFollowerAlias() {
+        return lastFollowerAlias;
     }
 }

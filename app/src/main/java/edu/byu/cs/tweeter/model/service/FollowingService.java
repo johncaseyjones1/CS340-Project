@@ -4,7 +4,11 @@ import java.io.IOException;
 
 import edu.byu.cs.tweeter.model.domain.User;
 import edu.byu.cs.tweeter.model.net.ServerFacade;
+import edu.byu.cs.tweeter.model.service.request.FollowerNumRequest;
+import edu.byu.cs.tweeter.model.service.request.FollowingNumRequest;
 import edu.byu.cs.tweeter.model.service.request.FollowingRequest;
+import edu.byu.cs.tweeter.model.service.response.FollowerNumResponse;
+import edu.byu.cs.tweeter.model.service.response.FollowingNumResponse;
 import edu.byu.cs.tweeter.model.service.response.FollowingResponse;
 import edu.byu.cs.tweeter.util.ByteArrayUtils;
 
@@ -44,6 +48,11 @@ public class FollowingService {
         }
     }
 
+    public FollowingNumResponse getFollowingNum(FollowingNumRequest request) throws IOException {
+        FollowingNumResponse response = getServerFacade().getFollowingNum(request);
+        return response;
+    }
+
     /**
      * Returns an instance of {@link ServerFacade}. Allows mocking of the ServerFacade class for
      * testing purposes. All usages of ServerFacade should get their ServerFacade instance from this
@@ -52,6 +61,7 @@ public class FollowingService {
      * @return the instance.
      */
     ServerFacade getServerFacade() {
+        //return ServerFacade.getInstance();
         return new ServerFacade();
     }
 }

@@ -26,7 +26,13 @@
         </activity>
         <activity
             android:name=".view.main.UserActivity"
-            android:label="@string/title_activity_user">
+            android:label="@string/title_activity_user"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".view.RegisterActivity"
+            android:label="@string/register"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

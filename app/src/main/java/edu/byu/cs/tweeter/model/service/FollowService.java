@@ -30,6 +30,7 @@ public class FollowService {
      * @return the instance.
      */
     ServerFacade getServerFacade() {
+        //return ServerFacade.getInstance();
         return new ServerFacade();
     }
 }
