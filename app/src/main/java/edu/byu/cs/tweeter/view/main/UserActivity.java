@@ -88,13 +88,11 @@ public class UserActivity extends AppCompatActivity implements FollowTask.Observ
         ImageView userImageView = findViewById(R.id.userImage);
         userImageView.setImageDrawable(ImageUtils.drawableFromByteArray(user.getImageBytes()));
 
-        //TODO Get actual following count from presenter
         followeeCount = findViewById(R.id.followeeCount);
         GetFollowingNumTask getFollowingNumTask = new GetFollowingNumTask(followingPresenter, observerFollowing);
         FollowingNumRequest followingRequest = new FollowingNumRequest(user.getAlias());
         getFollowingNumTask.execute(followingRequest);
 
-        //TODO Get actual followers count from presenter
         followerCount = findViewById(R.id.followerCount);
         GetFollowerNumTask getFollowerNumTask = new GetFollowerNumTask(followersPresenter, observerFollower);
         FollowerNumRequest followersRequest = new FollowerNumRequest(user.getAlias());

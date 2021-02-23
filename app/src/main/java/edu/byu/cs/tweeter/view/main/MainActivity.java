@@ -97,11 +97,9 @@ public class MainActivity extends AppCompatActivity implements LogoutPresenter.V
         ImageView userImageView = findViewById(R.id.userImage);
         userImageView.setImageDrawable(ImageUtils.drawableFromByteArray(user.getImageBytes()));
 
-        //TODO Get actual following count from presenter
         TextView followeeCount = findViewById(R.id.followeeCount);
         followeeCount.setText(getString(R.string.followeeCount, user.getFollowing().size()));
 
-        //TODO Get actual followers count from presenter
         TextView followerCount = findViewById(R.id.followerCount);
         followerCount.setText(getString(R.string.followerCount, user.getFollowers().size()));
 
