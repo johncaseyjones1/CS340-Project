@@ -26,7 +26,7 @@ public class LoginPresenterTest {
     private LoginService mockLoginService;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws IOException {
         User currentUser = new User("FirstName", "LastName", "testUser",
                 "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png");
 
@@ -37,11 +37,9 @@ public class LoginPresenterTest {
         // Setup a mock ServerFacade that will return known responses
         response = new LoginResponse(currentUser, new AuthToken());
         mockLoginService = Mockito.mock(LoginService.class);
-        try {
-            Mockito.when(mockLoginService.login(request)).thenReturn(response);
-        } catch (IOException e) {
 
-        }
+        Mockito.when(mockLoginService.login(request)).thenReturn(response);
+
 
         // Create a LoginersPresenter instance and wrap it with a spy that will use the mock presenter
         presenter = Mockito.spy(new LoginPresenter(new LoginPresenter.View() {}));

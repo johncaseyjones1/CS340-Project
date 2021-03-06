@@ -26,7 +26,7 @@ public class LogoutPresenterTest {
     private LogoutService mockLogoutService;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws IOException {
         User currentUser = new User("FirstName", "LastName", "testUser",
                 "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png");
 
@@ -37,11 +37,8 @@ public class LogoutPresenterTest {
         // Setup a mock ServerFacade that will return known responses
         response = new LogoutResponse(true, "Success!");
         mockLogoutService = Mockito.mock(LogoutService.class);
-        try {
-            Mockito.when(mockLogoutService.logout(request)).thenReturn(response);
-        } catch (IOException e) {
+        Mockito.when(mockLogoutService.logout(request)).thenReturn(response);
 
-        }
 
         // Create a LogoutersPresenter instance and wrap it with a spy that will use the mock presenter
         presenter = Mockito.spy(new LogoutPresenter(new LogoutPresenter.View() {

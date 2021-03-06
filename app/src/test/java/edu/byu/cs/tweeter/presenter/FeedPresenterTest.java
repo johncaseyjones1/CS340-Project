@@ -31,7 +31,7 @@ public class FeedPresenterTest {
     private FeedService mockFeedService;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws IOException {
         User currentUser = new User("FirstName", "LastName", null);
         User resultUser1 = new User("FirstName1", "LastName1",
                 "alias1",
@@ -61,11 +61,9 @@ public class FeedPresenterTest {
         // Setup a mock ServerFacade that will return known responses
         response = new StatusResponse(Arrays.asList(resultStatus1, resultStatus2, resultStatus3), false);
         mockFeedService = Mockito.mock(FeedService.class);
-        try {
-            Mockito.when(mockFeedService.getStatuses(request)).thenReturn(response);
-        } catch (Exception e) {
 
-        }
+        Mockito.when(mockFeedService.getStatuses(request)).thenReturn(response);
+
 
         // Create a FollowersPresenter instance and wrap it with a spy that will use the mock presenter
         presenter = Mockito.spy(new FeedPresenter(new FeedPresenter.View() {}));
@@ -79,7 +77,7 @@ public class FeedPresenterTest {
     }
 
     @Test
-    public void testGetFollowers_invalidRequest_returnsNoFollowerss() throws IOException {
+    public void testGetFollowers_invalidRequest() throws IOException {
         Mockito.when(mockFeedService.getStatuses(request)).thenThrow(new IOException());
 
         Assertions.assertThrows(IOException.class, () -> {

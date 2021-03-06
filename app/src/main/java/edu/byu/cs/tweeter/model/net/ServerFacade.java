@@ -330,21 +330,25 @@ public class ServerFacade {
      * Posts a status to the fake database for the active user.
      * @return success/failure message
      */
-    public PostStatusResponse postStatus(PostStatusRequest request) throws Exception {
+    public PostStatusResponse postStatus(PostStatusRequest request) throws IOException {
         for (User user : db.getUsers()) {
+            System.out.println("comparing user " + request.getUserAlias() + " with user " + user.getAlias());
             if (user.getAlias().equals(request.getUserAlias())) {
                 Pair<Vector<Tag>, Vector<URL>> tagsAndLinks = ExtractTagsAndLinksUtil.parseContent(request.getContent());
                 System.out.println("TAGS:");
-                for (Tag tag : tagsAndLinks.first) {
-                    if (tag.getUser() == null) {
-                        System.out.println("Can't find user!");
-                        throw new Exception("Sorry, the user you have tagged does not exist!");
+                if (tagsAndLinks != null && tagsAndLinks.first != null && tagsAndLinks.second != null) {
+                    for (Tag tag : tagsAndLinks.first) {
+                        if (tag.getUser() == null) {
+                            System.out.println("Can't find user!");
+                            throw new IOException("Sorry, the user you have tagged does not exist!");
+                        }
+                        System.out.println(tag.getUser().getAlias() + " starts at " + tag.getPositionInString() + " and is " + tag.getLength() + " long.");
                     }
-                    System.out.println(tag.getUser().getAlias() + " starts at " + tag.getPositionInString() + " and is " + tag.getLength() + " long.");
-                }
-                System.out.println("LINKS:");
-                for (URL link : tagsAndLinks.second) {
-                    System.out.println(link.getUrlText() + " starts at " + link.getPositionInString() + " and is " + link.getLength() + " long.");
+
+                    System.out.println("LINKS:");
+                    for (URL link : tagsAndLinks.second) {
+                        System.out.println(link.getUrlText() + " starts at " + link.getPositionInString() + " and is " + link.getLength() + " long.");
+                    }
                 }
                 user.getStatuses().add(new Status(request.getUserAlias(), request.getContent(), tagsAndLinks.first, tagsAndLinks.second, request.getTimeStamp()));
                 return new PostStatusResponse("Success!");

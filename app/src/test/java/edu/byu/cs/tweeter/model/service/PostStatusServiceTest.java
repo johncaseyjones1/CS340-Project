@@ -32,7 +32,7 @@ public class PostStatusServiceTest {
     private PostStatusService postStatusServiceSpy;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws IOException {
         User currentUser = new User("FirstName", "LastName", null);
         User resultUser1 = new User("FirstName1", "LastName1",
                 "alias1",
@@ -64,12 +64,10 @@ public class PostStatusServiceTest {
         successResponse = new PostStatusResponse("Success!");
         failureResponse = new PostStatusResponse("An exception occurred");
         ServerFacade mockServerFacade = Mockito.mock(ServerFacade.class);
-        try {
-            Mockito.when(mockServerFacade.postStatus(validRequest)).thenReturn(successResponse);
-            Mockito.when(mockServerFacade.postStatus(invalidRequest)).thenReturn(failureResponse);
-        } catch (Exception E) {
 
-        }
+        Mockito.when(mockServerFacade.postStatus(validRequest)).thenReturn(successResponse);
+        Mockito.when(mockServerFacade.postStatus(invalidRequest)).thenReturn(failureResponse);
+
 
         // Create a FollowersService instance and wrap it with a spy that will use the mock service
         postStatusServiceSpy = Mockito.spy(new PostStatusService());

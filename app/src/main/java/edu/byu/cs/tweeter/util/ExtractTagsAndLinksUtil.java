@@ -20,7 +20,7 @@ public class ExtractTagsAndLinksUtil {
         tags = extractTags(content);
         links = extractLinks(content);
 
-        Pair<Vector<Tag>, Vector<URL>> output = new Pair<Vector<Tag>, Vector<URL>>(tags, links);
+        Pair<Vector<Tag>, Vector<URL>> output = new Pair<>(tags, links);
         return output;
     }
 

@@ -48,7 +48,7 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
     private static final int PAGE_SIZE = 10;
 
     private User user;
-    private User activeUser;
+    //private User activeUser;
     private AuthToken authToken;
     private FollowersPresenter presenter;
 
@@ -80,7 +80,7 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
 
         //noinspection ConstantConditions
         user = (User) getArguments().getSerializable(USER_KEY);
-        activeUser = (User) getArguments().getSerializable(ACTIVE_USER);
+        //activeUser = (User) getArguments().getSerializable(ACTIVE_USER);
         authToken = (AuthToken) getArguments().getSerializable(AUTH_TOKEN_KEY);
 
         presenter = new FollowersPresenter(this);
@@ -154,7 +154,7 @@ public class FollowersFragment extends Fragment implements FollowersPresenter.Vi
     private void userSelected(User rowUser){
         Intent intent = new Intent(this.getActivity(), UserActivity.class);
         intent.putExtra(USER, rowUser);
-        intent.putExtra(ACTIVE_USER, activeUser);
+        intent.putExtra(ACTIVE_USER, user);
         startActivity(intent);
     }
 

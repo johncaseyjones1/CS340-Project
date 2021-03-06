@@ -31,7 +31,7 @@ public class StoryPresenterTest {
     private StoryService mockStoryService;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws IOException {
         User currentUser = new User("FirstName", "LastName", null);
         User resultUser1 = new User("FirstName1", "LastName1",
                 "alias1",
@@ -61,11 +61,8 @@ public class StoryPresenterTest {
         // Setup a mock ServerFacade that will return known responses
         response = new StatusResponse(Arrays.asList(resultStatus1, resultStatus2, resultStatus3), false);
         mockStoryService = Mockito.mock(StoryService.class);
-        try {
-            Mockito.when(mockStoryService.getStatuses(request)).thenReturn(response);
-        } catch (Exception e) {
+        Mockito.when(mockStoryService.getStatuses(request)).thenReturn(response);
 
-        }
 
         // Create a FollowersPresenter instance and wrap it with a spy that will use the mock presenter
         presenter = Mockito.spy(new StoryPresenter(new StoryPresenter.View() {}));

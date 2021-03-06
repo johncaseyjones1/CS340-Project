@@ -27,7 +27,7 @@ public class RegisterPresenterTest {
     private RegisterService mockRegisterService;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws IOException {
         User currentUser = new User("FirstName", "LastName", "newAlias",
                 "https://faculty.cs.byu.edu/~jwilkerson/cs340/tweeter/images/donald_duck.png");
 
@@ -41,11 +41,8 @@ public class RegisterPresenterTest {
 
         mockRegisterService = Mockito.mock(RegisterService.class);
 
-        try {
-            Mockito.when(mockRegisterService.register(request)).thenReturn(response);
-        } catch (IOException e) {
+        Mockito.when(mockRegisterService.register(request)).thenReturn(response);
 
-        }
 
         // Create a RegisterersPresenter instance and wrap it with a spy that will use the mock presenter
         presenter = Mockito.spy(new RegisterPresenter(new RegisterPresenter.View() {}));

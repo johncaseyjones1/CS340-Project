@@ -18,7 +18,6 @@ public class FakeDatabase {
 
     public static FakeDatabase getInstance() {
         if (instance == null) {
-            System.out.println("making new fake database");
             instance = new FakeDatabase();
         }
         return instance;
@@ -126,7 +125,6 @@ public class FakeDatabase {
             // Create 1 generic status
 
             String content = "This is my fake status";
-            System.out.println(content);
             //Pair<Vector<Tag>, Vector<URL>> tagsAndLinks = ExtractTagsAndLinksUtil.parseContent(content);
             users.elementAt(userNum).getStatuses().add(new Status(
                     users.elementAt(userNum).getAlias(),

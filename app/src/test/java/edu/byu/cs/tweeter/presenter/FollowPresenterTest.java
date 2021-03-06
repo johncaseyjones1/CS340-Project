@@ -27,7 +27,7 @@ public class FollowPresenterTest {
     private FollowService mockFollowService;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws IOException {
         User currentUser = new User("FirstName", "LastName", null);
 
         User resultUser1 = new User("FirstName1", "LastName1",
@@ -39,11 +39,9 @@ public class FollowPresenterTest {
 
         mockFollowService = Mockito.mock(FollowService.class);
 
-        try {
-            Mockito.when(mockFollowService.follow(request)).thenReturn(response);
-        } catch (Exception e) {
 
-        }
+        Mockito.when(mockFollowService.follow(request)).thenReturn(response);
+
 
 
         presenter = Mockito.spy(new FollowPresenter(new FollowPresenter.View() {}));
